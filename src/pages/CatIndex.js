@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
+import { CardTitle, Col } from 'reactstrap'
 
 class CatIndex extends Component {
     render() {
-        console.log(this.props.cats)
-        return (
-            <div>
-                <h3>I am the Cat Index</h3>
-                {this.props.cats.map(cat => {
-                    return<p>(cat.name)</p>
+        return(
+            <>
+                <h2>Cat Index</h2>
+                <br />
+                <Col sm="6">
+                {this.props.cats && this.props.cats.map(cat => {
+                    return <NavLink to={`/catshow/${cat.id}`} key={cat.id}>
+                        <CardTitle>
+                        <h4>{cat.name}</h4>
+                        </CardTitle>
+                        </NavLink>
                 })}
-            </div>
+                </Col>
+            </>
         );
     }
 }

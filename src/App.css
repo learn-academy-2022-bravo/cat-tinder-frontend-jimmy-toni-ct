@@ -2,7 +2,7 @@
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: baseline;
     padding: 1em;
     margin-bottom: 2em;
@@ -24,12 +24,14 @@
 
 .footer {
   box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: baseline;
     padding: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 0px;
     background-color: rgb(192, 45, 26);
     color: #fff;
 }
