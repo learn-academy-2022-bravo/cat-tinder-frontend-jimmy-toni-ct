@@ -1,23 +1,14 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Footer from  './Footer'
-// import Footer from './component/Footer'
+import Footer from './Footer'
 
 Enzyme.configure({adapter: new Adapter()})
 
-// describe('When the app renders', () => {
-//     it('displays a footer', () => {
-//       const renderedApp = shallow(<App/>)
-//       const renderedFooter = renderedApp.find("Footer")
-//       expect(renderedFooter.length).toEqual(1)
-//     })
-//   })
-
-  describe("When Footer renders", () => {
-    it("displays a heading", () => {
-      const foot = shallow(<foot />)
-      const footHeading = home.find("h3").text()
-      expect(footHeading).toEqual("Jimmy & Toni")
+describe("When the Footer renders", () => {
+    it("displays a tag", () => {
+      const homeFooter = shallow(<Footer />)
+      const homeFooterTxt = homeFooter.find("h3").text()
+      expect(homeFooterTxt).toEqual("footer")
     })
-  })
+  }) 

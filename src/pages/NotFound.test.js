@@ -5,10 +5,10 @@ import NotFound from './NotFound'
 
 Enzyme.configure({adapter: new Adapter()})
 
-describe('When the app renders', () => {
-    it('provides a route "/" to the NotFound component', () => {
-      const renderedApp = shallow(<NotFound/>)
-      const renderedNotFound = renderedApp.find('[path="/"]')
-      expect(renderedNotFound.props().component).toEqual(NotFound)
+describe("When NotFound renders", () => {
+    it("displays a heading", () => {
+      const notFound = shallow(<NotFound />)
+      const notFoundHeadingText = notFound.find("h2").text()
+      expect(notFoundHeadingText).toEqual("NotFound")
     })
   })
