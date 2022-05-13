@@ -11,10 +11,10 @@ class CatIndex extends Component {
                 <Col sm="6">
                 {this.props.cats && this.props.cats.map(cat => {
                     return <NavLink to={`/catshow/${cat.id}`} key={cat.id}>
-                        <CardTitle>
-                        <h4>{cat.name}</h4>
-                        </CardTitle>
-                        </NavLink>
+                    <CardTitle>
+                    <h4>{cat.name}</h4>
+                    </CardTitle>
+                    </NavLink>
                 })}
                 </Col>
             </>
