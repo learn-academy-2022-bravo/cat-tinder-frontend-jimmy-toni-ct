@@ -13,43 +13,72 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import cats from './mockCats.js';
+// import cats from './mockCats.js';
 
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      cats: cats
+      cats: []
     }
   }
 
-  createCat = (newlyCreatedCat) => {
-    console.log(newlyCreatedCat)
+  componentDidMount() {
+    this.readCat()
   }
 
+  readCat = () => {
+    fetch("http://localhost:3000/cats")
+    .then(response => response.json())
+    .then(payload => this.setState({cats: payload}))
+    .catch(errors => console.log("Cat read errors:", errors))
+  }
+
+  createCat = (newlyCreatedCat) => {
+    fetch("http://localhost:3000/cats", {
+      body: JSON.stringify(newlyCreatedCat),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(() => this.readCat())
+    .catch(errors => console.log("Cat create errors:", errors))
+  }
+
+
   render() {
-       return (
+    return(
       <Router>
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/catindex" render={(props) => <CatIndex cats={this.state.cats} />} 
+          <Route
+            path="/catindex"
+            render={(props) => <CatIndex cats={this.state.cats} />}
           />
-          <Route path="/catshow/:id" render={(props) => {
-            let id = +props.match.params.id
-            let cat = this.state.cats.find(catObject => catObject.id === id)
-            return <CatShow cat={cat} />
-            }} 
-          />
-          <Route path="/catnew" render={(props) => <CatNew createCat={this.createCat} />}
+          <Route
+            path="/catshow/:id"
+            render={(props) => {
+              let id = +props.match.params.id
+              let cat = this.state.cats.find(catObject => catObject.id === id)
+              return <CatShow cat={cat}/>
+            }}
           />
           <Route path="/catedit" component={CatEdit} />
+          <Route
+            path="/catnew"
+            render={() => {
+              return <CatNew createCat={this.createCat}/>
+            }}
+          />
           <Route component={NotFound} />
         </Switch>
         <Footer />
       </Router>
-    );
+    )
   }
 }
 

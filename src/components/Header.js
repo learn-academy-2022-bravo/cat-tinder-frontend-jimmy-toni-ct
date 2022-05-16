@@ -4,7 +4,7 @@ class Header extends Component {
     render() {
         return (
             <>
-                <h2 className="Header">Header</h2>
+                <h2 className="Header">Cat Tinder</h2>
             </>
         );
     }
